@@ -8,6 +8,9 @@ const OrdersList = (props) => {
         </div>
     );
 
+    console.log(props);
+
+
     return orders.map(order => {
         const createdDate = new Date(order.createdAt);
 
