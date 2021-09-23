@@ -1,9 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import './main.css';
 
 
 function Main() {
+
+  // Prevents the back button from being clicked after logout event
+  let history = useHistory();
+  window.onpopstate = () => {
+    history.go(1);
+  };
+
   return (
     <div className="main-body">
       <h1>Bruce's Diner Ordering Application</h1>
