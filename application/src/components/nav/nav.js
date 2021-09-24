@@ -1,8 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./nav.css";
 import { connect } from 'react-redux'; 
-import { loginUser } from "../../redux/actions/authActions";
+import { logoutUser } from "../../redux/actions/authActions";
 
 
 const mapStateToProps = (state) => {
@@ -10,11 +10,13 @@ const mapStateToProps = (state) => {
 }
 
 const Nav = (props) => {
+    
+    const history = useHistory();
 
     const resetAuthOnLogout = () => {
-        props.loginUser(null, null);
-        return "/";
-    }
+        props.logoutUser();
+        history.replace("/");
+    };
 
     return (
         <div className="nav-strip">
@@ -28,7 +30,7 @@ const Nav = (props) => {
                     <label className="nav-label">View Orders</label>
                 </div>
             </Link>
-            <Link to={resetAuthOnLogout} className="nav-link">
+            <Link to={"#"} onClick={resetAuthOnLogout} className="nav-link">
                 <div className="nav-link-style">
                     <label className="nav-label">Log Out</label>
                 </div>
@@ -37,4 +39,4 @@ const Nav = (props) => {
     );
 }
 
-export default connect(mapStateToProps,{ loginUser })(Nav);
+export default connect(mapStateToProps,{ logoutUser })(Nav);
