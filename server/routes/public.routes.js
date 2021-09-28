@@ -38,7 +38,7 @@ router.post('/add-order', async (req, res) => {
       order_item: req.body.order_item,
       quantity: req.body.quantity,
       ordered_by: req.body.ordered_by,
-    });
+    }); 
   
     const dbResponse = await orderObj.save();
     if (dbResponse && dbResponse._id) {
@@ -50,7 +50,7 @@ router.post('/add-order', async (req, res) => {
     res.status(500).json({ success: false, error });
   }
 });
-
+ 
 router.post('/edit-order', async (req, res) => {
   // expects id
   try {

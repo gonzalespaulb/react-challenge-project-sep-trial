@@ -2,6 +2,8 @@
     font-family: "Optima", serif;
     min-height: 100px;
     border-bottom: solid 1px #999;
+    display: flex;
+    flex-direction: column;
 }
 
 .view-order-container p {
@@ -48,4 +50,11 @@
     .view-order-container button {
         margin: 0;
     }
+}
+
+.edit-container {
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 1px solid #999;
 }
