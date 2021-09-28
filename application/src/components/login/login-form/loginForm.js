@@ -1,21 +1,23 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux'; 
+import React, { useState, useEffect } from 'react';
 import { loginUser } from '../../../redux/actions/authActions'
+import { useSelector, useDispatch } from 'react-redux';
 
-
-const mapStateToProps = (state) => {
-  return state.auth;
-}
 
 const LoginForm = (props) => {
   const [email, setEmail] = useState(``);
   const [password, setPassword] = useState(``);
 
+  const token = useSelector((state) => state.auth.token);
+  const dispatch = useDispatch();
+
   const login = (e) => {
     e.preventDefault();
-    props.loginUser(email, password);
-    props.onLogin();
+    dispatch(loginUser(email, password));
   }
+
+  useEffect(() => {
+    if(token !== null) props.onLogin();
+  }, [token])
 
   return (
     <form>
@@ -34,4 +36,4 @@ const LoginForm = (props) => {
   );
 }
 
-export default connect(mapStateToProps,{ loginUser })(LoginForm);
+export default LoginForm;
